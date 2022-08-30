@@ -5,11 +5,14 @@ class Users::InvitationsController < Devise::InvitationsController
   
     def create
       super
+      @group = Group.new
+      @group.user_id = User.last.id
+      @group.family_id = params[:user][:family_id]
+      @group.save
     end
   
     def edit
       super
-      binding.pry
     end
 
     def show
